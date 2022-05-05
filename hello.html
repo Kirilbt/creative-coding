@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Playground</h1>
+  <canvas width="600" height="600"></canvas>
+  <script>
+    // let canvas = document.querySelector('canvas')
+    // let context = canvas.getContext('2d')
+
+    // context.fillStyle = 'blue'
+    // context.fillRect(100, 100, 400, 400)
+
+    // context.lineWidth = 1
+    // context.beginPath()
+    // context.rect(100, 100, 400, 400)
+    // context.stroke()
+
+    // context.beginPath()
+    // context.arc(300, 300, 100, 0, Math.PI * 2)
+    // context.stroke()
+    // const width = 60
+    // const height = 60
+    // const gap = 20
+    // let x, y
+
+    // for (let i = 0; i < 5; i++) {
+    //   for (let j = 0; j < 5; j++) {
+    //     x = 100 + (width + gap) * i
+    //     y = 100 + (height + gap) * j
+
+    //     context.lineWidth = 2
+    //     context.beginPath()
+    //     context.rect(x, y, width, height)
+    //     context.stroke()
+
+    //     if (Math.random() < 0.5) {
+    //       if (Math.random() < 0.5) {
+    //         context.beginPath()
+    //         context.rect(x + 16, y + 16, width - 32, height - 32)
+    //         context.stroke()
+
+    //       }
+    //       context.beginPath()
+    //       context.rect(x + 8, y + 8, width - 16, height - 16)
+    //       context.stroke()
+    //     }
+    //   }
+    // }
+
+    let canvas = document.querySelector('canvas');
+    let context = canvas.getContext("2d");
+    context.fillRect(0,0,canvas.width, canvas.height);
+    context.strokeStyle = "white";
+    let fieldSize = 200;
+    context.lineWidth = 2;
+    for (let y = 0; y < 3; y++) { // columns
+      for (let x = 0; x <3; x++) { // horizontal loop
+        for (let i = 90; i > 10; i=i-5) {
+          let xoffs = (x-1)*(i-90);
+          let yoffs = (y-1)*(i-90);
+          context.beginPath();
+          context.arc(fieldSize * x  + fieldSize / 2 + xoffs, fieldSize * y + fieldSize / 2 + yoffs, i, 0, Math.PI *2);
+          context.fill();
+          context.stroke();
+          context.closePath();
+        }
+      }
+    }
+
+
+    // // Function
+    // function multiply(a, b) {
+    //   return a * b
+    // }
+    // let result = multiply(5,7)
+    // console.log(result)
+
+    // // Arrow function
+    // let multiplyArrow = (a, b) => {
+    //   return a * b
+    // }
+
+    // console.log(multiplyArrow(5, 7))
+  </script>
+</body>
+</html>
