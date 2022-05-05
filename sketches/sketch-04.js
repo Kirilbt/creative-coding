@@ -9,6 +9,8 @@ const settings = {
 };
 
 const params = {
+  bgColor: '#fbedbe',
+  strokeColor: '#514dae',
   cols: 20,
   rows: 20,
   scaleMin: 1,
@@ -22,7 +24,7 @@ const params = {
 
 const sketch = () => {
   return ({ context, width, height, frame }) => {
-    context.fillStyle = 'white';
+    context.fillStyle = params.bgColor;
     context.fillRect(0, 0, width, height);
 
     const cols = params.cols;
@@ -60,6 +62,7 @@ const sketch = () => {
 
       context.lineWidth = scale;
       context.lineCap = params.lineCap;
+      context.strokeStyle = params.strokeColor;
 
       context.beginPath();
       context.moveTo(w * -0.5, 0);
@@ -76,17 +79,23 @@ const createPane = () => {
   let folder;
 
   folder = pane.addFolder({ title: 'Grid'});
-  folder.addInput(params, 'lineCap', { options: { butt: 'butt', round: 'round', square: 'square' }});
+  folder.addInput(params, 'bgColor');
   folder.addInput(params, 'cols', { min: 2, max: 60, step: 1 });
   folder.addInput(params, 'rows', { min: 2, max: 60, step: 1 });
   folder.addInput(params, 'scaleMin', { min: 1, max: 100});
   folder.addInput(params, 'scaleMax', { min: 1, max: 100});
 
+  folder = pane.addFolder({ title: 'Element'});
+  folder.addInput(params, 'strokeColor');
+  folder.addInput(params, 'lineCap', { options: { butt: 'butt', round: 'round', square: 'square' }});
+
   folder = pane.addFolder({ title: 'Noise'});
   folder.addInput(params, 'freq', { min: -0.01, max: 0.01});
   folder.addInput(params, 'amp', { min: 0, max: 1});
-  folder.addInput(params, 'frame', { min: 0, max: 999});
+
+  folder = pane.addFolder({ title: 'Animation'});
   folder.addInput(params, 'animate');
+  folder.addInput(params, 'frame', { min: 0, max: 999});
 }
 
 createPane();
